@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    volumes:
+      - .:/app
+      - app_data:/data
+    environment:
+      - ENV=development
+    ports:
+      - "8880:8880"
+
+volumes:
+  app_data:
