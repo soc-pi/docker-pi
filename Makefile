@@ -1,10 +1,11 @@
 .PHONY: build run clean
 
 build:
-    docker-compose build
+	docker-compose build
 
 run:
-    docker-compose up
+	docker-compose up
 
 clean:
-    docker-compose down --rmi all --volumes --remove-orphans
+	docker-compose down --rmi all --volumes --remove-orphans
+	docker system prune -a --volumes

@@ -1,14 +1,9 @@
-version: '3.8'
 services:
   app:
     build: .
-    volumes:
-      - .:/app
-      - app_data:/data
+    container_name: docker-pi_app
+    user: pi
     environment:
-      - ENV=development
-    ports:
-      - "8880:8880"
-
-volumes:
-  app_data:
+      - HOME=/home/pi
+    working_dir: /app
+    entrypoint: [ "bash" ]
