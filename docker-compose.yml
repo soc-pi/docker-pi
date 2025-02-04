@@ -1,9 +1,19 @@
 services:
-  app:
-    build: .
-    container_name: docker-pi_app
-    user: pi
+  yocto-builder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: raspberry-pi
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./volumes:/home/builder/yocto-build
     environment:
-      - HOME=/home/pi
-    working_dir: /app
-    entrypoint: [ "bash" ]
+      - YOCTO_DIR=/home/builder/yocto-build
+    user: "builder"
+    networks:
+      - yocto-net
+
+networks:
+  yocto-net:
+    driver: bridge
